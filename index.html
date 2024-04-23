@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Topology Grader</title>
+        <link rel="stylesheet" href="index.css">
+
+        <!-- font -->
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+
+        <script>
+            function truncate(num) {
+                return Math.round(100 * num) / 100;
+            }
+            function testResults (form) {
+                var results = [form.minus.value, form.checkminus.value, form.checkplus.value, form.check.value].map(Number);
+                var total = Math.max(results.reduce((a, b) => a + b, 0), 1);
+                var score = (results[0]*0.7 + results[1]*0.8 + results[2] + results[3]*0.9) / total;
+                alert ("Your score: " + truncate(score*Number(form.points.value)) + "/" + form.points.value + " (" + truncate(score*100) + "%)");
+            }
+        </script>
+    </head>
+    <body>
+        <h1>Topology Grader</h1>
+        <div id="main">
+            <form>
+                <label for="minus"><h3>Number of minuses</h3></label>
+                <input type="number" id="minus" name="minus" value="0"><br>
+                <label for="checkminus"><h3>Number of check minuses</h3></label>
+                <input type="number" id="checkminus" name="checkminus" value="0"><br>
+                <label for="checkplus"><h3>Number of check pluses</h3></label>
+                <input type="number" id="checkplus" name="checkplus" value="0"><br>
+                <label for="check"><h3>Number of checks</h3></label>
+                <input type="number" id="check" name="check" value="0"><br><br>
+                <label for="points"><h3>How many points was it out of</h3></label>
+                <input type="number" id="points" name="points" value="10"><br><br>
+                <input type="submit" value="Submit" onclick="testResults(this.form)">
+            </form> 
+        </div>
+        
+    </body>
+</html>
